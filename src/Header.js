@@ -49,10 +49,9 @@ function Header() {
 
 			<div className="header__nav">
 				<Link to={!user && '/login'} className="header__option">
-					<div onClick={handleAuthentification}>
-						{!user ? null : user.email} {user ? 'Log Out' : 'Log in'}
-					</div>
+					<div onClick={handleAuthentification}>{user ? null : 'Log In'}</div>
 				</Link>
+				{!user ? null : <div className="header__option"> {user.email}</div>}
 				<div className="header__option">Ordini</div>
 				<div className="header__option">Prime</div>
 
@@ -60,6 +59,12 @@ function Header() {
 					<ShoppingBasketIcon className="" />
 					<span className="header__basketCount">{basket?.length} </span>
 				</Link>
+
+				{user ? (
+					<div className="header__logout" onClick={handleAuthentification}>
+						Log Out{' '}
+					</div>
+				) : null}
 			</div>
 		</div>
 	);
