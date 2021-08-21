@@ -48,32 +48,17 @@ function Header() {
 			</div>
 
 			<div className="header__nav">
-				<Link to={!user && '/login'}>
-					<div onClick={handleAuthentification} className="header__option">
-						<span className="header__optionLineOne">
-							Ciao, {!user ? 'Accedi' : user.email}{' '}
-						</span>
-						<span className="header__optionLineTwo">
-							{user ? 'Log Out' : 'Log in'}
-						</span>
+				<Link to={!user && '/login'} className="header__option">
+					<div onClick={handleAuthentification}>
+						{!user ? null : user.email} {user ? 'Log Out' : 'Log in'}
 					</div>
 				</Link>
-				<div className="header__option">
-					<span className="header__optionLineOne">Resi </span>
-					<span className="header__optionLineTwo">e ordini</span>
-				</div>
-				<div className="header__option">
-					<span className="header__optionLineOne">Iscriviti a </span>
-					<span className="header__optionLineTwo">Prime</span>
-				</div>
+				<div className="header__option">Ordini</div>
+				<div className="header__option">Prime</div>
 
-				<Link to="/checkout">
-					<div className="header__optionBasket">
-						<ShoppingBasketIcon className="" />
-						<span className="header__optionLineTwo  header__basketCount">
-							{basket?.length}{' '}
-						</span>
-					</div>
+				<Link to="/checkout" className="header__optionBasket">
+					<ShoppingBasketIcon className="" />
+					<span className="header__basketCount">{basket?.length} </span>
 				</Link>
 			</div>
 		</div>
