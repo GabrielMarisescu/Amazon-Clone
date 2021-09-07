@@ -1,0 +1,37 @@
+.background {
+	display: flex;
+	background-color: black;
+	min-height: 4em;
+	align-items: center;
+}
+
+.mobile__basket {
+	text-decoration: none;
+	color: black;
+}
+
+.mobile__button {
+	display: flex;
+	align-items: center;
+	color: white;
+	flex-grow: 6;
+}
+
+.mobile__basketDiv {
+	align-items: center;
+	flex-grow: 0.3;
+	color: white;
+}
+.mobile__font {
+	font-size: 14px;
+}
+
+.mobile__spacing {
+	align-self: flex-end;
+	margin-left: 10px;
+}
+
+.mobile__alignment {
+	display: flex;
+	justify-content: center;
+}

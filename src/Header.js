@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useStateValue } from './StateProvider';
 import { auth } from './firebase';
 import Select from 'react-select';
+import { Hidden } from '@material-ui/core';
+import MobileMenu from './MobileMenu';
 
 function Header() {
 	const [{ basket, user }, dispatch] = useStateValue();
@@ -30,43 +32,53 @@ function Header() {
 	];
 
 	return (
-		<div className="header">
-			<Link to="/">
-				<img
-					className="header__logo"
-					src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-					alt="Amazon"
-				/>{' '}
-			</Link>
+		<header>
+			<Hidden xsDown>
+				<div className="header">
+					<Link to="/">
+						<img
+							className="header__logo"
+							src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+							alt="Amazon"
+						/>{' '}
+					</Link>
 
-			<div className="header__search">
-				<Select
-					options={options}
-					className="header_searchInput"
-					placeholder="Selezionare Oggetti"
-				/>
-			</div>
-
-			<div className="header__nav">
-				<Link to={!user && '/login'} className="header__option">
-					<div onClick={handleAuthentification}>{user ? null : 'Log In'}</div>
-				</Link>
-				{!user ? null : <div className="header__option"> {user.email}</div>}
-				<div className="header__option">Ordini</div>
-				<div className="header__option">Prime</div>
-
-				<Link to="/checkout" className="header__optionBasket">
-					<ShoppingBasketIcon className="" />
-					<span className="header__basketCount">{basket?.length} </span>
-				</Link>
-
-				{user ? (
-					<div className="header__logout" onClick={handleAuthentification}>
-						Log Out{' '}
+					<div className="header__search">
+						<Select
+							options={options}
+							className="header_searchInput"
+							placeholder="Selezionare Oggetti"
+						/>
 					</div>
-				) : null}
-			</div>
-		</div>
+
+					<div className="header__nav">
+						<Link to={!user && '/login'} className="header__option">
+							<div onClick={handleAuthentification}>
+								{user ? null : 'Log In'}
+							</div>
+						</Link>
+						{!user ? null : <div className="header__option"> {user.email}</div>}
+
+						<div className="header__option">Ordini</div>
+						<div className="header__option">Prime</div>
+
+						<Link to="/checkout" className="header__optionBasket">
+							<ShoppingBasketIcon className="" />
+							<span className="header__basketCount">{basket?.length} </span>
+						</Link>
+
+						{user ? (
+							<div className="header__logout" onClick={handleAuthentification}>
+								Log Out{' '}
+							</div>
+						) : null}
+					</div>
+				</div>
+			</Hidden>
+			<Hidden smUp>
+				<MobileMenu />
+			</Hidden>
+		</header>
 	);
 }
 
